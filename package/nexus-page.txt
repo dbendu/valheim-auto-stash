@@ -1,0 +1,63 @@
+===== SUMMARY (paste into "Brief overview") =====
+
+Give every chest a filter, then press Z to put your loot away: each item goes to the nearby chest that accepts it. Alt+click inventory slots to lock them. Client-side only, works on vanilla servers.
+
+===== DESCRIPTION (paste into "Detailed description", BBCode) =====
+
+[size=4]Give every chest a filter, then press [b]Z[/b] to put your loot away: each item goes to the nearby chest that accepts it. Lock inventory slots with [b]Alt+click[/b] to keep your tools, food and potions where they are.[/size]
+
+[size=5][b]Features[/b][/size]
+[list]
+[*][b]Chest filters.[/b] Open a chest and press [b]Filter[/b] under its window. Pick whole categories (Materials, Food, Meads, Trophies, Fish, Weapons, Armor, Ammo, Tools, Other) and/or individual items from a searchable grid. [b]Add chest contents[/b] picks everything the chest currently holds. Categories also cover items you find later. Chests without a filter never receive anything.
+[*][b]Stash with one key.[/b] Press [b]Z[/b] (or the [b]Stash[/b] button next to the inventory) to move items into filtered chests within 10 m.
+[list]
+[*]Chests where the item is picked individually come before chests that accept it through a category.
+[*]Among equal chests, one that already holds the item comes first, then the closest one.
+[*]Existing stacks are topped up before free slots are used. Whatever does not fit overflows into the next matching chest; nothing is ever dropped.
+[/list]
+[*][b]Locked slots.[/b] [b]Alt+click[/b] an inventory slot to lock or unlock it; locked slots get a blue frame. Items in locked slots are never stashed, and by default the game's own [b]Place stacks[/b] skips them too. Locks belong to the slot and are saved with your character.
+[*][b]Never stashed:[/b] equipped items, quest items, the item on your cursor, and ExtraSlots' special slots.
+[*]Works with chests, carts and ship storage. Wards and private chests are respected.
+[*]English and Russian interface (follows the game language).
+[/list]
+
+[size=5][b]Multiplayer[/b][/size]
+[b]Client-side only[/b]: install it just on your own game. It is not needed on the server or on other players' games.
+Chests are filled through the same ownership handshake the game uses for Place stacks, so it works on vanilla servers and next to players without the mod. Chests someone else has open are skipped. Filters are stored in the chest itself, so everyone with the mod sees the same filters.
+
+[size=5][b]Configuration[/b][/size]
+File: [b]BepInEx/config/dbendu.AutoStash.cfg[/b] (created on first launch), or in game with BepInEx Configuration Manager (F1).
+[list]
+[*][b]StashKey[/b] (Z): stash key. It does not fire while Alt or Ctrl is held, unless they are part of the shortcut.
+[*][b]Radius[/b] (10): maximum chest distance in metres, 2–50.
+[*][b]ToggleModifier[/b] (LeftAlt): hold it and left-click a slot to lock or unlock it.
+[*][b]ProtectFromPlaceStacks[/b] (true): keep locked slots out of the game's Place stacks as well.
+[*][b]InventoryButton[/b] (true): show the Stash button next to the inventory.
+[*][b]ShowUndiscoveredItems[/b] (false): list every item in the filter editor, not only discovered ones.
+[*][b]Enabled[/b] (true): turns the whole mod on or off.
+[/list]
+
+[size=5][b]Compatibility[/b][/size]
+[list]
+[*][b]ExtraSlots[/b]: its special slots are recognised and never stashed or locked.
+[*]Not tested together with other mods that move items into chests (AzuAutoStore, Quick Stack Store and similar); they do the same job, so one of them is usually enough.
+[/list]
+
+[size=5][b]Installation[/b][/size]
+[list=1]
+[*]Install [b]BepInEx pack for Valheim[/b] (see Requirements).
+[*]Extract the archive into the Valheim folder (the one with valheim.exe), so the file ends up in [b]BepInEx/plugins/AutoStash/AutoStash.dll[/b].
+[/list]
+Mod manager users: Auto Stash is also on Thunderstore (r2modman, Thunderstore Mod Manager, Gale).
+Removing the mod is safe: filters and locks are stored as plain data that the game ignores.
+
+[line]
+
+[size=5][b]Auto Stash — на русском[/b][/size]
+Настройте, что принимает каждый сундук, и нажмите [b]Z[/b]: вещи из инвентаря сами разложатся по ближайшим подходящим сундукам. [b]Alt+клик[/b] по слоту блокирует его, и вещи из такого слота не раскладываются.
+[list]
+[*][b]Фильтр сундука[/b]: кнопка «Фильтр» под окном сундука. Выбираются категории и отдельные предметы; категории действуют и на предметы, найденные позже.
+[*][b]Раскладка[/b]: клавиша Z или кнопка «Разложить» рядом с инвентарём, радиус 10 м. Сначала сундуки, где предмет выбран отдельно, потом сундуки с подходящей категорией. Остаток идёт в следующий подходящий сундук или остаётся в инвентаре.
+[*][b]Блокировка слотов[/b]: Alt+клик, голубая рамка. Защищает и от игрового «Сложить». Сохраняется в персонаже.
+[*]Мод нужен только на клиенте. Он работает на обычных серверах и рядом с игроками без мода.
+[/list]
