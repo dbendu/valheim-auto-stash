@@ -20,7 +20,7 @@ namespace AutoStash
     {
         public const string Guid = "dbendu.AutoStash";
         public const string Name = "Auto Stash";
-        public const string Version = "1.0.0";
+        public const string Version = "1.1.0";
 
         private static readonly KeyCode[] ExclusiveModifiers =
         {
@@ -41,6 +41,8 @@ namespace AutoStash
 
         internal static ConfigEntry<bool> ProtectFromPlaceStacks { get; private set; }
 
+        internal static ConfigEntry<Color> FrameColor { get; private set; }
+
         internal static ConfigEntry<bool> InventoryButton { get; private set; }
 
         internal static ConfigEntry<bool> ShowUndiscovered { get; private set; }
@@ -55,6 +57,7 @@ namespace AutoStash
             Radius = Config.Bind("General", "Radius", 10f, new ConfigDescription("Chests farther than this many metres from the player are ignored.", new AcceptableValueRange<float>(2f, 50f)));
             LockModifier = Config.Bind("Locked slots", "ToggleModifier", KeyCode.LeftAlt, "Hold this key and left-click an inventory slot to lock or unlock it. Items in locked slots are never stashed.");
             ProtectFromPlaceStacks = Config.Bind("Locked slots", "ProtectFromPlaceStacks", true, "Also keep locked slots out of the game's own \"Place stacks\" action.");
+            FrameColor = Config.Bind("Locked slots", "FrameColor", new Color(1f, 0.62f, 0.2f, 1f), "Colour of the frame drawn around locked slots.");
             InventoryButton = Config.Bind("Interface", "InventoryButton", true, "Show a Stash button next to the inventory.");
             ShowUndiscovered = Config.Bind("Interface", "ShowUndiscoveredItems", false, "List every item in the filter editor, not only items this character has discovered.");
             Ui = new StashUi();

@@ -11,7 +11,7 @@ Give every chest a filter, then press **Z** to put your loot away: each item goe
   - chests where the item is picked individually come before chests that accept it through a category;
   - among equal chests, one that already holds the item comes first, then the closest one;
   - existing stacks are topped up before free slots are used, and whatever does not fit overflows into the next matching chest. Nothing is ever dropped.
-- **Locked slots.** **Alt+click** an inventory slot to lock or unlock it; locked slots get a blue frame. Items in locked slots are never stashed, and by default the game's own **Place stacks** skips them too. Locks belong to the slot and are saved with your character.
+- **Locked slots.** **Alt+click** an inventory slot to lock or unlock it; locked slots get a thin orange frame. Items in locked slots are never stashed, and by default the game's own **Place stacks** skips them too. Locks belong to the slot and are saved with your character.
 - **Never stashed:** equipped items, quest items, the item on your cursor, and ExtraSlots' special slots (equipment, quick slots, food, ammo).
 - Works with chests, carts and ship storage. Wards and private chests are respected.
 - English and Russian interface (follows the game language).
@@ -33,6 +33,7 @@ Edit `BepInEx/config/dbendu.AutoStash.cfg` (created on first launch), or change 
 | General | `Radius` | `10` | Maximum chest distance in metres (2–50). |
 | Locked slots | `ToggleModifier` | `LeftAlt` | Hold it and left-click a slot to lock or unlock it. |
 | Locked slots | `ProtectFromPlaceStacks` | `true` | Keep locked slots out of the game's **Place stacks** as well. |
+| Locked slots | `FrameColor` | orange | Colour of the frame around locked slots. |
 | Interface | `InventoryButton` | `true` | Show the **Stash** button next to the inventory. |
 | Interface | `ShowUndiscoveredItems` | `false` | List every item in the filter editor, not only the ones your character has discovered. |
 
@@ -60,6 +61,6 @@ Removing the mod is safe: filters and locks are stored as plain data that the ga
   - сначала в сундуки, где предмет выбран отдельно, потом в сундуки с подходящей категорией;
   - при равенстве — в сундук, где такой предмет уже лежит, затем в ближайший;
   - сначала дополняются неполные стопки, потом занимаются свободные ячейки. Остаток идёт в следующий подходящий сундук или остаётся в инвентаре.
-- **Блокировка слотов.** **Alt+клик** по слоту блокирует его или снимает блокировку, заблокированный слот обведён голубой рамкой. Вещи из таких слотов не раскладываются. По умолчанию их не трогает и игровое **«Сложить»**. Блокировка сохраняется в персонаже.
+- **Блокировка слотов.** **Alt+клик** по слоту блокирует его или снимает блокировку, заблокированный слот обведён тонкой оранжевой рамкой (цвет меняется в настройках). Вещи из таких слотов не раскладываются. По умолчанию их не трогает и игровое **«Сложить»**. Блокировка сохраняется в персонаже.
 - **Никогда не раскладываются:** надетые вещи, квестовые предметы, вещь на курсоре и спецслоты ExtraSlots.
 - Мод нужен только на клиенте. Он работает на обычных серверах и рядом с игроками без мода. Настройки — в `BepInEx/config/dbendu.AutoStash.cfg` или в игре через Configuration Manager (F1).

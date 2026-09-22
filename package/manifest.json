@@ -1,6 +1,6 @@
 {
     "name": "AutoStash",
-    "version_number": "1.0.0",
+    "version_number": "1.1.0",
     "website_url": "https://github.com/dbendu/valheim-auto-stash",
     "description": "Per-chest item filters and a stash key: press Z to move your items into nearby chests that accept them. Alt+click inventory slots to lock them. Client-side, works on vanilla servers.",
     "dependencies": [

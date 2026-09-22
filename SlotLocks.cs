@@ -16,12 +16,6 @@ namespace AutoStash
     {
         private const string DataKey = "AutoStash.LockedSlots.v1";
 
-        private const string OverlayName = "AutoStashLock";
-
-        private static readonly Color BorderColor = new Color(0.35f, 0.7f, 1f, 0.95f);
-
-        private static readonly Color TintColor = new Color(0.3f, 0.6f, 1f, 0.14f);
-
         private static readonly HashSet<int> Empty = new HashSet<int>();
 
         private static Player _player;
@@ -143,6 +137,7 @@ namespace AutoStash
         internal static void UpdateOverlays(InventoryGrid grid)
         {
             bool enabled = Plugin.Enabled.Value;
+            Color color = Plugin.FrameColor.Value;
             foreach (InventoryElement element in GameAccess.Elements(grid))
             {
                 if (!element)
@@ -150,52 +145,25 @@ namespace AutoStash
                     continue;
                 }
                 bool show = enabled && IsLocked(element.Position) && Lockable(element.Position);
-                Transform overlay = element.transform.Find(OverlayName);
-                if (!overlay)
+                Transform existing = element.transform.Find(LockMarker.ObjectName);
+                LockMarker marker = existing ? existing.GetComponent<LockMarker>() : null;
+                if (!marker)
                 {
                     if (!show)
                     {
                         continue;
                     }
-                    overlay = CreateOverlay(element.transform);
+                    marker = LockMarker.Create(element.transform);
                 }
-                if (overlay.gameObject.activeSelf != show)
+                if (marker.gameObject.activeSelf != show)
                 {
-                    overlay.gameObject.SetActive(show);
+                    marker.gameObject.SetActive(show);
+                }
+                if (show)
+                {
+                    marker.Apply(color);
                 }
             }
-        }
-
-        private static Transform CreateOverlay(Transform element)
-        {
-            GameObject root = new GameObject(OverlayName, typeof(RectTransform));
-            root.transform.SetParent(element, false);
-            RectTransform rect = (RectTransform)root.transform;
-            rect.anchorMin = Vector2.zero;
-            rect.anchorMax = Vector2.one;
-            rect.offsetMin = new Vector2(1f, 1f);
-            rect.offsetMax = new Vector2(-1f, -1f);
-            AddPart(rect, "Tint", Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero, TintColor);
-            const float t = 2f;
-            AddPart(rect, "Top", new Vector2(0f, 1f), Vector2.one, new Vector2(0f, -t), Vector2.zero, BorderColor);
-            AddPart(rect, "Bottom", Vector2.zero, new Vector2(1f, 0f), Vector2.zero, new Vector2(0f, t), BorderColor);
-            AddPart(rect, "Left", Vector2.zero, new Vector2(0f, 1f), Vector2.zero, new Vector2(t, 0f), BorderColor);
-            AddPart(rect, "Right", new Vector2(1f, 0f), Vector2.one, new Vector2(-t, 0f), Vector2.zero, BorderColor);
-            return root.transform;
-        }
-
-        private static void AddPart(Transform parent, string name, Vector2 anchorMin, Vector2 anchorMax, Vector2 offsetMin, Vector2 offsetMax, Color color)
-        {
-            GameObject part = new GameObject(name, typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
-            part.transform.SetParent(parent, false);
-            RectTransform rect = (RectTransform)part.transform;
-            rect.anchorMin = anchorMin;
-            rect.anchorMax = anchorMax;
-            rect.offsetMin = offsetMin;
-            rect.offsetMax = offsetMax;
-            Image image = part.GetComponent<Image>();
-            image.color = color;
-            image.raycastTarget = false;
         }
     }
 
